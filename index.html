@@ -235,67 +235,28 @@ tw-story[tags~="stairwell"] tw-passage {
     box-shadow: 0 0 50px #ff0000; /* Red glowing effect */
   
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="purple"></tw-tag><tw-tag name="title-screen" color="blue"></tw-tag><tw-tag name="level-1-bg" color="green"></tw-tag><tw-tag name="dead-bg" color="red"></tw-tag><tw-tag name="psych-pod-bg" color="yellow"></tw-tag><tw-tag name="sec-bg" color="orange"></tw-tag><tw-tag name="lab-bg" color="green"></tw-tag><tw-tag name="pharm-bg" color="green"></tw-tag><tw-tag name="wards-bg" color="green"></tw-tag><tw-tag name="roof-bg" color="green"></tw-tag><tw-tag name="supply-bg" color="purple"></tw-tag><tw-tag name="victory-bg" color="blue"></tw-tag><tw-tag name="levl" color="green"></tw-tag><tw-tag name="stairwell" color="orange"></tw-tag><tw-tag name="pharn" color="green"></tw-tag><tw-passagedata pid="1" name="Startup" tags="title-screen" position="1300,100" size="100,100">(set: $hp to 100)
-(set: $hasN95 to false)
-(set: $hasAmulet to false)
 
 
 # WELCOME TO THE HOSPITAL 
 The infection has started. The attendings have left. You are the only one who can save the patients of Truman Medical Center.
 
 [[START YOUR SHIFT -&gt;Z1 Intro]]
-[[SELECT MISSION -&gt;Mission Select]]</tw-passagedata><tw-passagedata pid="2" name="ER: Skew" tags="level-1-bg" position="700,600" size="100,100"># ZONE 1: THE ER
-
-The hospital doors are buckling. You get a peek of the horde outsde and see a massive number of elderly patients (80s), some adults, and even a few infants. (Zombie babies?)
-
-The demographics are not a normal distribution. Plotting age distribution, is the apocalypse positively or negatively skewed? 
-
-(link-repeat: &quot;📊 ANALYZE DEMOGRAPHICS GRAPH&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/2rukOcj.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-                &lt;b&gt;DATA LOG: &lt;/b&gt; Negative Skew Distribution
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE DATA&quot;)[(hide: ?graphPopup)]
-            &lt;/br&gt;
-    &lt;/div&gt;
-
-]
-(hide: ?graphPopup)
-
-&lt;br&gt;
-**Question:** This is a **Negative Skew**. Which value is lower?
-
-[[The Median-&gt;ER: Skew Fail]]
-[[The Mean-&gt;ER: Sens vs Spec]]
-
-
-
-</tw-passagedata><tw-passagedata pid="3" name="Supply Closet" tags="supply-bg" position="2000,300" size="100,100"># THE SUPPLY CLOSET
+[[SELECT MISSION -&gt;Mission Select]]</tw-passagedata><tw-passagedata pid="2" name="Supply Closet" tags="supply-bg" position="2000,300" size="100,100"># THE SUPPLY CLOSET
 You lock the door behind you. It&#39;s quiet here.
 Your Health: (text-style: &quot;bold&quot;)[$hp %]
 
-(if: $hp &lt; 100)[
-    The medical kit is locked. You must solve a puzzle to open it.
+ 
+The medical kit is locked. You must solve a puzzle to open it and gain HP back!
 [[Practice: 2x2 Tables (+10 HP)-&gt;Drill 2x2]]
 [[Practice: Drug Math (+10 HP)-&gt;Drill NNT]]
 [[Practice: SnOUT/SpIN (+10 HP)-&gt;Drill Acronym]]
 [[Practice: Confidence Intervals (+10 HP)-&gt;Drill Significance]]
-]
-(else:)[
-    **You are fully healed.** Get back out there!
-]
 
-(link: &quot;Return to Mission&quot;)[ (goto: $nextLevel) ]
 
-</tw-passagedata><tw-passagedata pid="4" name="Drill 2x2" tags="supply-bg" position="2200,400" size="100,100">(set: $roll to (random: 1, 6))
+
+[[Return to Mission Select -&gt;Mission Select]]
+
+</tw-passagedata><tw-passagedata pid="3" name="Drill 2x2" tags="supply-bg" position="2200,400" size="100,100">(set: $roll to (random: 1, 6))
 
 (if: $roll is 1)[
     **Question:** The patient has the Disease (+), and the Test is Positive (+).
@@ -332,7 +293,7 @@ Your Health: (text-style: &quot;bold&quot;)[$hp %]
  **Question:** Which column do you use to calculate **Specificity**?
      [[The Disease (+) Column (Left) (=TP) / (TP+FN)-&gt;Drill Fail]]
     [[The Disease (-) Column (Right) (=TN) / (TN + FP)-&gt;Drill Success]]
-]</tw-passagedata><tw-passagedata pid="5" name="Drill NNT" tags="supply-bg" position="2325,400" size="100,100">(set: $roll to (random: 1, 3))
+]</tw-passagedata><tw-passagedata pid="4" name="Drill NNT" tags="supply-bg" position="2325,400" size="100,100">(set: $roll to (random: 1, 3))
 
 (if: $roll is 1)[
     **Question:** The ARR is 0.05. What is the NNT?
@@ -348,336 +309,14 @@ Your Health: (text-style: &quot;bold&quot;)[$hp %]
     **Question:** If NNT is 50, what is the Absolute Risk Reduction?
     [[2% (0.02)-&gt;Drill Success]]
     [[50% (0.50)-&gt;Drill Fail]]
-]</tw-passagedata><tw-passagedata pid="6" name="Drill Success" tags="supply-bg" position="2600,400" size="100,100">**CORRECT!**
+]</tw-passagedata><tw-passagedata pid="5" name="Drill Success" tags="supply-bg" position="2600,400" size="100,100">**CORRECT!**
 The kit opens. You patch yourself up.
 (set: $hp to $hp + 10)
 (if: $hp &gt; 100)[ (set: $hp to 100) ]
 
-[[Back to Closet-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="7" name="Drill Fail" tags="supply-bg" position="2600,550" size="100,100">**WRONG!**
+[[Back to Closet-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="6" name="Drill Fail" tags="supply-bg" position="2600,550" size="100,100">**WRONG!**
 The kit stays locked.
-[[Try Again-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="8" name="ER: Sens vs Spec" tags="level-1-bg" position="700,700" size="100,100"># ZONE 1: THE ER
-Correct! 
-In a negatively skewed distribution, the Mean is lower.
-
-
-(link-repeat: &quot;Skewed Data&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/PdrpILV.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-                &lt;b&gt;DATA LOG: &lt;/b&gt; Negative Skew Distribution
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE DATA&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-Now, you need to screen the patients entering the Safe Zone. You cannot let a single infected person in. 
-Test A has high sensitivity. Test B has high specificity.
-
-**Question:** Do you prioritize Sensitivity or Specificity?
-[[Specificity-&gt;ER: Sens vs Spec Fail]]
-[[Sensitivity-&gt;ER: PPV]]</tw-passagedata><tw-passagedata pid="9" name="ER: Sens vs Spec Fail" tags="level-1-bg" position="600,800" size="100,100">**WRONG.**
-Specificity rules IN, but is a bad test to catch any possible zombie. 
-
-
-(link-repeat: &quot;Sensitivity vs Specificity&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/Ehqe25n.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-You successfully confirmed the true zombies, but you missed a few false negatives. The Safe Zone is breached!
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-[[Try Again-&gt;ER: Sens vs Spec]]
-</tw-passagedata><tw-passagedata pid="10" name="ER: PPV" tags="level-1-bg" position="700,800" size="100,100"># ZONE 1: THE ER
-Good call - you want to catch anyone who could possibly be infected, so you need a test with fewer false negatives. 
-SnOUT rules it OUT.
-
-(link-repeat: &quot;Sensitivity vs Specificity&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/Ehqe25n.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-Suddenly, a resident tests positive. But the prevalence of the virus here in the ER is only 1%.
-**Question:** What is the most likely reality?
-[[It is likely a False Positive-&gt;ER: Zone 1 Clear]]
-[[They are definitely a Zombie-&gt;ER: PPV Fail]]
-</tw-passagedata><tw-passagedata pid="11" name="ER: Zone 1 Clear" tags="level-1-bg" position="700,900" size="100,100"># ZONE 1 CLEARED
-
-**Correct.**
-
-Low Prevalence = Low Positive Predictive Value (PPV).
-Even with a good test, if the disease is extremely rare (1%), a positive result is statistically most likely to be a False Positive.
-
-(link-repeat: &quot;PPV and Prevalence&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/6NcRP5V.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-You take a deep breath.
-The hallway to the Lab is blocked by a sealed blast door.
-
-
-
-
-
----
-**You hear a banging from the psych pod...**
-</tw-passagedata><tw-passagedata pid="12" name="ER: PPV Fail" tags="level-1-bg" position="600,900" size="100,100">**WRONG.**
-
-You panicked and assumed a Positive Test meant &quot;Zombie.&quot; You threw your colleague out to die. 
-
-Because the prevalence was so low (1%), the Positive Predictive Value (PPV) was terrible. You just quarantined a healthy resident.
-
-Now there is no one to cover the ICU. The hospital collapses.
-
-
-(link-repeat: &quot;PPV and Prevalence&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/6NcRP5V.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;ER: PPV]]</tw-passagedata><tw-passagedata pid="13" name="Lab: Study Design" tags="lab-bg" position="700,1300" size="100,100"># ZONE 2: THE LAB
-
-(set: $hp to $hp - 0) 
-The lab is quiet. Too quiet. You need to find out what caused this outbreak.
-
-You decide to round up **50 Zombies** (&quot;Have disease&quot;) and **50 Healthy Survivors** (&quot;Do not have disease&quot;). You interview them to see if they ate &quot;Taco Tuesday&quot; last week (Exposure).
-
-**Question:** You started with the Disease and looked back for the Exposure. What study design is this?
-
-[[Retrospective Cohort-&gt;Lab: Study Design Fail]]
-[[Case-Control-&gt;Lab: Bias]]
-[[Cross-Sectional-&gt;Lab: Study Design Fail]]
-[[Randomized Controlled Trial-&gt;Lab: Study Design Fail]]
-
-
-
-
-
-
-
-
-
-
-
-
-</tw-passagedata><tw-passagedata pid="14" name="Lab: Study Design Fail" tags="lab-bg" position="600,1400" size="100,100">(set: $hp to $hp - 10)
-# WRONG STUDY!
-
-You wasted valuable time setting up the wrong database! The zombies are banging on the plexiglass.
-
-**THE CHIEF SCREAMS:**
-&quot;Don&#39;t confuse Cohort and Case-Control!&quot;
-
-* **COHORT:** Starts with **Exposure** (Ate Tacos vs Didn&#39;t Eat Tacos) -&gt; Looks for Disease.
-* **CASE-CONTROL:** Starts with **Disease** (Zombies vs Healthy) -&gt; Looks for Exposure.
-* **CROSS-SECTIONAL:** A snapshot of both at the same time (prevalence).
-
-Since you started with **Zombies (Disease)**, this is Case-Control!
-
-(link-repeat: &quot;Study Design&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/3YGIWyk.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-[[GET BACK TO WORK (Try Again)-&gt;Lab: Study Design]]
-
-</tw-passagedata><tw-passagedata pid="15" name="Lab: Testing" tags="lab-bg" position="700,1500" size="100,100"># ZONE 2: THE LAB
-**Correct.** Sick people ruminate; healthy people forget.
-This is a specific type of bias, but there are lots! Here&#39;s a pic: 
-You might want this: 
-(link-repeat: &quot;Bias Types&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/b0isBFZ.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-
-Dr. Foxworth bursts out of the back room, waving a glowing test tube.
-
-&quot;I&#39;ve solved it!&quot; he yells. &quot;I discovered a Super-Sensitive PCR test. It detects the Zombie Virus **2 years earlier** than our current screen!&quot;
-
-He slams a chart against the glass.
-* **Old Test:** Patients are diagnosed at Age 20. They turn into Zombies at Age 22. (Survival = 2 Years).
-* **Foxworth&#39;s New Test:** Detects the virus at Age 18. They turn into Zombies at Age 22. (Survival = 4 Years!)
-
-&quot;My test doubled the survival rate!&quot; he shouts. &quot;We need to screen everyone immediately!&quot;
-
-**Question:** Did Dr. Foxworth&#39;s test actually save lives?
-[[Yes! Early detection is always better.-&gt;Lab: Testing Fail]]
-[[No. This is Lead-Time Bias.-&gt;Lab: Comparing]]
-
-
-</tw-passagedata><tw-passagedata pid="16" name="Lab: Testing Fail" tags="lab-bg" position="600,1600" size="100,100">**NOPE**
-
-You didn&#39;t save lives; you just found the disease earlier.
-They still died at the exact same time, they just spent 2 extra years knowing they were sick. This is **Lead-Time Bias**.
-
-Lead Time Bias: 
-(link-repeat: &quot;Lead Time Bias&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/xkfZiF2.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Lab: Testing]]
-
-You should be able to contrast Lead Time Bias with Length Time Bias! 
-
-(link-repeat: &quot;Length Time Bias&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/uqGDMJF.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-
-
-</tw-passagedata><tw-passagedata pid="17" name="Lab: Comparing" tags="lab-bg" position="700,1600" size="100,100"># ZONE 2: THE LAB
-Correct. You didn&#39;t extend life, just the diagnosis time.
-
-
-To synthesize a cure, you need to understand how the zombie virus replicates across different ages. 
-You have collected blood samples from three distinct survivor groups: Infants, Teens, and Adults.
-
-You need to compare the Viral Load (a continuous number) across these three independent groups to see if one age group is more infectious than the others. 
-
-The computer give you the following options:
-</tw-passagedata><tw-passagedata pid="18" name="Z2 Q3 Fail All" tags="lab-bg" position="1225,1675" size="100,100"># ZONE 2: THE LAB
+[[Try Again-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="7" name="Z2 Q3 Fail All" tags="lab-bg" position="1225,1675" size="100,100"># ZONE 2: THE LAB
 **Sorry, it&#39;s not always Truman&#39;s fault...**
 
 * **T-Test:** Only measures two Dependent Variables (not infant/teen/adult)
@@ -706,130 +345,9 @@ How to choose a stastical test:
 ]
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="19" name="Pharm:Error" tags="pharm-bg" position="600,1800" size="100,100"># ZONE 3: THE PHARMACY
-
-Correct, you understand that White Coats are just a confounder, a variable that looks like it affects outcome, but really doesn&#39;t. You also know that IV Fluids DO affect outcome, but context (aka effect modifiers) matter!
-
-You&#39;ve made it the Pharmacy! 
-
-You run a trial for a cure (N=10). Your P-value = 0.08. 
-You know the drug works, but your study failed!
-
-**Question:** What error is this?
-[[Type I (False negative) -&gt;Pharm:Error Fail]]
-[[Type II (False positive) -&gt;Pharm:NNT]]
-
-</tw-passagedata><tw-passagedata pid="20" name="Pharm:Error Fail" tags="pharm-bg" position="500,1900" size="100,100">**WRONG.**
-You said &quot;Type I Error&quot; (False Positive).
-
-But here, you missed a real cure because your study was too small. That is a **Type II Error** (False Negative).
-
-Need extra help? 
-(link-repeat: &quot;Error Types&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/3HSudSC.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;br&gt;
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-(set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt;Pharm:Error]]</tw-passagedata><tw-passagedata pid="21" name="Pharm:NNT" tags="pharm-bg" position="600,1900" size="100,100"># DRUG MATH
-Correct. Your study was underpowered! 
-New Study: Control Death Rate = 0.30. Treatment Death Rate = 0.20.
-
-**Question:** Calculate the NNT.
-[[10-&gt;Zone 3 Complete]]
-[[50-&gt;Level 9 Fail]]
-[[Hint: Use Calculator-&gt;Calculator_Hint]]</tw-passagedata><tw-passagedata pid="22" name="Zone 3 Complete" tags="pharm-bg" position="600,2000" size="100,100"># ZONE 3 CLEARED
-
-**Reason:** 1 / 0.10 = 10.
-You have successfully synthesized the cure. Now you just need to calculate the dosages correctly.
-
-You look under the counter.
-**YOU FOUND A TI-89 CALCULATOR!**
-(set: $hasCalculator to true)
-*(Passive Effect: This item will reveal HINTS on future levels involving Math)*
-
-You sprint towards the Command Center, but the elevator is disabled.
-</tw-passagedata><tw-passagedata pid="23" name="Level 9 Fail" tags="pharm-bg" position="500,2000" size="100,100">**WRONG.**
-ARR = 0.30 - 0.20 = 0.10.
-NNT = 1 / 0.10.
-It&#39;s NOT 50.
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Pharm:NNT]]</tw-passagedata><tw-passagedata pid="24" name="Calculator_Hint" tags="" position="900,1800" size="100,100">(if: $hasCalculator is true)[
-    **CALCULATOR:** ARR = 0.30 - 0.20 = 0.10.
-    NNT = 1 / 0.10.
-    [[Back-&gt;Pharm:NNT]]
-]
-(else)[
-    You don&#39;t have the Calculator! You should have visited the Supply Closet!
-    [[Back-&gt;Pharm:NNT]]
-]</tw-passagedata><tw-passagedata pid="25" name="Level 10" tags="wards-bg" position="200,3575" size="100,100"># ZONE 4: COMMAND CENTER
-Nurses can&#39;t give the cure because the safe is locked. Admin wants to fire the nurse.
-
-**Question:** What do you do?
-[[Fire the nurse-&gt;Level 10 Fail]]
-[[Build a Fishbone Diagram-&gt;Level 11]]</tw-passagedata><tw-passagedata pid="26" name="Level 10 Fail" tags="wards-bg" position="125,3700" size="100,100">**WRONG.**
-You fired the nurse. Now you have no one to run the code.
-Blaming individuals for system problems is a &quot;Just Culture&quot; violation. You should have looked for the Root Cause.
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Level 10]]</tw-passagedata><tw-passagedata pid="27" name="Level 11" tags="wards-bg" position="275,3700" size="100,100"># THE ROLLOUT
-Correct. Fix the system, don&#39;t blame the person.
-
-
-[Image of Ishikawa fishbone diagram example]
-
-How do you implement the new &quot;Open Safe&quot; protocol?
-
-**Question:**
-[[Hospital-wide immediately-&gt;Level 11 Fail]]
-[[Small test (PDSA Cycle)-&gt;Zone 4 Complete]]</tw-passagedata><tw-passagedata pid="28" name="Level 11 Fail" tags="wards-bg" position="200,3825" size="100,100">**WRONG.**
-You sent a hospital-wide memo. No one read it.
-The few who did tried to open the safes with hammers and broke the vials.
-You should have done a small test (PDSA) first.
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Level 11]]</tw-passagedata><tw-passagedata pid="29" name="Zone 4 Complete" tags="wards-bg" position="325,3825" size="100,100"># ZONE 4 CLEARED
-
-**Reason:** Plan-Do-Study-Act (PDSA).
-You started with a small test of change, worked out the bugs, and now the &quot;Safe Opening Protocol&quot; is working hospital-wide. The cure is being distributed!
-
-The hospital is saved... but it&#39;s overrun.
-**OBJECTIVE UPDATED:** GET TO THE CHOPPER.
-
-The roof access door is open. You can hear the rotors.
-
-
-</tw-passagedata><tw-passagedata pid="30" name="Level 12" tags="roof-bg" position="700,3875" size="100,100"># THE HELIPAD
-The pilot screams: &quot;WE LEAVE IN 30 SECONDS!&quot;
-(live: 30s)[ (goto: &quot;Death_TooSlow&quot;) ]
-
-**Data: Risk of Crash RR = 0.5 (CI 0.2 – 0.9).**
-</tw-passagedata><tw-passagedata pid="31" name="Dead" tags="dead-bg" position="2100,4600" size="100,100">(set: $deathRoll to (random: 1, 4))
+[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="8" name="Dead" tags="dead-bg" position="2100,4600" size="100,100">(set: $deathRoll to (random: 1, 4))
 
 # YOU DIED.
 
@@ -852,13 +370,7 @@ The pilot screams: &quot;WE LEAVE IN 30 SECONDS!&quot;
 
 (set: $hp to 100)
 [[RESTART-&gt;Startup]]
-[[Throw my body in the supply closet! -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="32" name="Victory" tags="victory-bg" position="875,4125" size="100,100"># MISSION ACCOMPLISHED
-The helicopter lifts off. The CI did not cross 1, so the result was statistically significant.
-
-**CONGRATULATIONS.**
-You are a Board Certified Survivor.
-
-</tw-passagedata><tw-passagedata pid="33" name="Checkpoint Alpha Fail" tags="sec-bg" position="1900,1125" size="100,100"># SECURITY CHECKPOINT
+[[Throw my body in the supply closet! -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="9" name="Checkpoint Alpha Fail" tags="sec-bg" position="1900,1125" size="100,100"># SECURITY CHECKPOINT
 **ACCESS DENIED.**
 
 The security system blasts you with decontamination gas. It burns.
@@ -873,7 +385,7 @@ By shooting the climbers, you are lowering the **Incidence Rate** (the rate of n
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 [[Try Again -&gt;Checkpoint Alpha Incidence]]
-</tw-passagedata><tw-passagedata pid="34" name="Checkpoint Alpha Incidence" tags="sec-bg" position="1925,1000" size="100,100"># SECURITY CHECKPOINT ALPHA
+</tw-passagedata><tw-passagedata pid="10" name="Checkpoint Alpha Incidence" tags="sec-bg" position="1925,1000" size="100,100"># SECURITY CHECKPOINT ALPHA
 You leave the ER and stop at the security office. You watch the feed: 
 * **The Fence:** Every hour, 10 new zombies break through the fence.
 * **The Crowd:** There are currently 500 zombies roaming the grounds.
@@ -887,7 +399,7 @@ If the snipers successfully stop 50% of the zombies from climbing the fence, whi
 [[B. Incidence decreases -&gt; Checkpoint Alpha Clear]]
 [[C. Both stay the same -&gt;Checkpoint Alpha Fail]]
 
-</tw-passagedata><tw-passagedata pid="35" name="Checkpoint Bravo" tags="sec-bg" position="1925,2000" size="100,100"># SECURITY CHECKPOINT BRAVO
+</tw-passagedata><tw-passagedata pid="11" name="Checkpoint Bravo" tags="sec-bg" position="1925,2000" size="100,100"># SECURITY CHECKPOINT BRAVO
  &quot;AUTHORIZATION REQUIRED: RESOLVE THE LOGICAL FALLACY.&quot;
 
 ALERT 1: &quot;White Coats appear linked to higher infection rates. But this is a statistical error - it&#39;s just that hospital doctors wear them, while secretaries don&#39;t.&quot; 
@@ -903,7 +415,7 @@ The Condtion (bleeding out vs HF) is  __________.
 [[A. White Coat = Effect Modifier || Condition = Confounder -&gt; Checkpoint Bravo Fail]]
 [[B. White Coat = Confounder || Condition = Effect Modifier -&gt;Z3 Intro]]
 [[C. Both are Confounders -&gt; Checkpoint Bravo Fail]]
-[[D. Both are Effect Modifiers -&gt; Checkpoint Bravo Fail]]</tw-passagedata><tw-passagedata pid="36" name="Checkpoint Charlie" tags="sec-bg" position="1900,3100" size="100,100"># SECURITY CHECKPOINT CHARLIE
+[[D. Both are Effect Modifiers -&gt; Checkpoint Bravo Fail]]</tw-passagedata><tw-passagedata pid="12" name="Checkpoint Charlie" tags="sec-bg" position="1900,3100" size="100,100"># SECURITY CHECKPOINT CHARLIE
 
 You have the drugs. You rush to the Command Center, but the elevator is disabled.
 To override the logic circuit, you must interpret the data stream.
@@ -919,15 +431,7 @@ The system asks for the **Pearson Correlation Coefficient (r)**. Based on the gr
 [[A. r = -0.80 -&gt; Checkpoint Charlie Fail]]
 [[B. r = 0.00 -&gt; Checkpoint Charlie Fail]]
 [[C. r = +0.80 -&gt; Checkpoint Charlie Correct]]
-</tw-passagedata><tw-passagedata pid="37" name="Mask hint" tags="lab-bg" position="950,1350" size="100,100">**N95 MASK EQUIPPED**
-The mask filters out the &quot;hot air&quot; from the zombies.
-*Hint:* Sick people tend to search their memories for a cause. Healthy people don&#39;t care. This creates a specific type of bias.
-
-
-[[Back-&gt;Lab: Study Design]]</tw-passagedata><tw-passagedata pid="38" name="Hint_Amulet" tags="" position="550,4000" size="100,100">**AMULET GLOWS**
-The spirit of Evidence-Based Medicine whispers to you:
-&quot;For Ratios (RR/OR), the line of no effect is 1. If the interval touches 1, it is not significant.&quot;
-[[Back-&gt;Level 12]]</tw-passagedata><tw-passagedata pid="39" name="Drill Acronym" tags="supply-bg" position="2200,550" size="100,100">(set: $roll to (random: 1, 3))
+</tw-passagedata><tw-passagedata pid="13" name="Drill Acronym" tags="supply-bg" position="2200,550" size="100,100">(set: $roll to (random: 1, 3))
 
 (if: $roll is 1)[
     **Question:** You want to rule OUT a disease (Screening).
@@ -943,7 +447,7 @@ The spirit of Evidence-Based Medicine whispers to you:
     **Question:** Which test has the fewest False Negatives?
     [[High Sensitivity-&gt;Drill Success]]
     [[High Specificity-&gt;Drill Fail]]
-]</tw-passagedata><tw-passagedata pid="40" name="Drill Significance" tags="supply-bg" position="2325,550" size="100,100">(set: $roll to (random: 1, 3))
+]</tw-passagedata><tw-passagedata pid="14" name="Drill Significance" tags="supply-bg" position="2325,550" size="100,100">(set: $roll to (random: 1, 3))
 
 (if: $roll is 1)[
     **Question:** RR = 1.5 (CI 0.9 – 2.2). Significant?
@@ -959,7 +463,7 @@ The spirit of Evidence-Based Medicine whispers to you:
     **Question:** OR = 0.5 (CI 0.1 – 0.4). Significant?
     [[Yes-&gt;Drill Success]]
     [[No-&gt;Drill Fail]]
-]</tw-passagedata><tw-passagedata pid="41" name="ScreeningQ1" tags="psych-pod-bg" position="1300,1050" size="100,100">(set: $choiceA to false)
+]</tw-passagedata><tw-passagedata pid="15" name="ScreeningQ1" tags="psych-pod-bg" position="1300,1050" size="100,100">(set: $choiceA to false)
 (set: $choiceB to false)
 (set: $choiceC to false)
 (set: $choiceD to false)
@@ -1012,7 +516,7 @@ The spirit of Evidence-Based Medicine whispers to you:
     (else:)[
         (goto: &quot;Screening_Incorrect&quot;)
     ]
-]</tw-passagedata><tw-passagedata pid="42" name="Screening_Correct" tags="psych-pod-bg" position="1275,1150" size="100,100">(set: $hasN95 to true)
+]</tw-passagedata><tw-passagedata pid="16" name="Screening_Correct" tags="psych-pod-bg" position="1275,1150" size="100,100">(set: $hasN95 to true)
 
 # Correct!
 
@@ -1048,7 +552,7 @@ You clasp the **Amulet of Cochrane** around your neck.
 You feel wiser. You are ready to move on.
 
 [[Move to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]
-[[I need a break. Crash in the Supply Closet?-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="43" name="Screening_Incorrect" tags="psych-pod-bg" position="1175,1150" size="100,100"># Incorrect.
+[[I need a break. Crash in the Supply Closet?-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="17" name="Screening_Incorrect" tags="psych-pod-bg" position="1175,1150" size="100,100"># Incorrect.
 
 &quot;Not quite,&quot; the Chief says. &quot;Review the Wilson and Jungner criteria tonight.&quot;
 
@@ -1072,7 +576,7 @@ You feel wiser. You are ready to move on.
 
 He puts the Amulet away. You&#39;ll have to face the wards without one.
 
-[[Move to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]</tw-passagedata><tw-passagedata pid="44" name="Zone1 EC1 Screening" tags="psych-pod-bg" position="1300,950" size="100,100">**YOU APPROACH THE PSYCH POD...**
+[[Move to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]</tw-passagedata><tw-passagedata pid="18" name="Zone1 EC1 Screening" tags="psych-pod-bg" position="1300,950" size="100,100">**YOU APPROACH THE PSYCH POD...**
 
 The chief resident collpases in front of you in relief. He&#39;s been rescued! 
 
@@ -1083,46 +587,7 @@ The chief offers you a small, glowing necklace - the **Amulet of Cochrane**!
 **Do you want to attempt the Extra Credit question to earn the Amulet?**
 
 [[Attempt the Question -&gt;ScreeningQ1]]
-[[Skip it and move back to the blast doors. Proceed to Security Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]</tw-passagedata><tw-passagedata pid="45" name="ER: Skew Fail" tags="level-1-bg" position="600,700" size="100,100">**WRONG.**
-
-Median finds the middle number in a list of ordered values:
-(0, 0, 0, 0, 0, 13, 50, 50, 51, 51, 55, 57, 60, 60, 60, 64, 69, 69, 69, 81).
-Median is 53. 
-The Median resists outliers. 
-
-Mean takes the average of the data. Add them all up and divide by the total number of points. In this case, 43. The mean is strongly affected by outliers, in this case all those little babies! 
-The Mean chases the tail (the infants).
-
-
-In a positive skew, this will be reversed.
-In a normal distribution, the mean and median are the same!
-
-
-(link-repeat: &quot;Skewed Data&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/PdrpILV.png&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-                &lt;b&gt;DATA LOG: &lt;/b&gt;  Skew Distribution
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE DATA&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-[[Try Again-&gt;ER: Skew]]</tw-passagedata><tw-passagedata pid="46" name="Footer" tags="footer" position="1100,100" size="100,100">&lt;div style=&quot;position: fixed; bottom: 15px; left: 15px; background: rgba(0, 0, 0, 0.9); border: 2px solid #999; border-radius: 8px; padding: 5px 10px; z-index: 9999; backdrop-filter: blur(2px); display: flex; align-items: center; width: 200px; box-shadow: 0 0 10px black;&quot;&gt;
+[[Skip it and move back to the blast doors. Proceed to Security Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]</tw-passagedata><tw-passagedata pid="19" name="Footer" tags="footer" position="1100,100" size="100,100">&lt;div style=&quot;position: fixed; bottom: 15px; left: 15px; background: rgba(0, 0, 0, 0.9); border: 2px solid #999; border-radius: 8px; padding: 5px 10px; z-index: 9999; backdrop-filter: blur(2px); display: flex; align-items: center; width: 200px; box-shadow: 0 0 10px black;&quot;&gt;
     
     &lt;b style=&quot;color: white; margin-right: 10px; font-family: sans-serif; font-size: 16px; text-shadow: 1px 1px black;&quot;&gt;HP&lt;/b&gt;
     
@@ -1145,78 +610,7 @@ In a normal distribution, the mean and median are the same!
         (if: $hasAmulet)[ 🧿 ]
     &lt;/div&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="Lab: Bias" tags="lab-bg" position="700,1400" size="100,100"># ZONE 2: THE LAB
-
-**Correct!** Study design is hard to remember, but you got it! 
-
-Here&#39;s a picture if you need it: 
-(link-repeat: &quot;Study Design&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/3YGIWyk.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-You decide to conduct a **Case-Control Study** to find Patient Zero.
-
-You interview 50 Zombies (Cases) and 50 Healthy Survivors (Controls).
-* **The Zombies:** Vividly remember eating &quot;Truman Tacos&quot; right before they turned. They are obsessively searching their memories for a cause.
-* **The Survivors:** Don&#39;t remember what ate  last Tuesday. They were just living their lives.
-
-
-**Question:** The Zombies are over-reporting the Tacos because they are sick and looking for an answer. What is this threat to validity?
-
-[[Confounding-&gt;Lab: Bias Fail]]
-[[Recall Bias-&gt;Lab: Testing]]
-[[Selection Bias-&gt;Lab: Bias Fail]]
-
-(if: $hasMask is true)
-[[Use N95 Mask (Reveal Hint)-&gt;Mask hint]] </tw-passagedata><tw-passagedata pid="48" name="Lab: Bias Fail" tags="lab-bg" position="600,1500" size="100,100">
-**WRONG.**
-
-You trusted the zombies&#39; memory. That is **Recall Bias**.
-Sick people search their memories for a &quot;cause,&quot; while healthy people forget what they ate for lunch yesterday. Your data is garbage.
-
-You might want this: 
-(link-repeat: &quot;Bias Types&quot;)[(show: ?graphPopup)]
-
-|graphPopup)[
-    &lt;div style=&quot;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 20000; display: flex; flex-direction: column; align-items: center; justify-content: center;&quot;&gt;
-        
-        &lt;div style=&quot;background: white; padding: 10px; border-radius: 10px; border: 4px solid #555;&quot;&gt;
-            &lt;img src=&quot;https://i.imgur.com/b0isBFZ.jpeg&quot; style=&quot;max-width: 80vw; max-height: 60vh;&quot;&gt;
-            &lt;div style=&quot;color: black; text-align: center; font-family: sans-serif; margin-top: 5px;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;br&gt;
-
-        (link-repeat: &quot;❌ CLOSE&quot;)[(hide: ?graphPopup)]
-        &lt;/br&gt;
-        
-    &lt;/div&gt;
-]
-(hide: ?graphPopup)
-
-
-(set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
-
-[[Try Again-&gt;Lab: Bias]]</tw-passagedata><tw-passagedata pid="49" name="Z2 Q3 Fail T" tags="lab-bg" position="1325,1675" size="100,100"># ZONE 2: THE LAB
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Z2 Q3 Fail T" tags="lab-bg" position="1325,1675" size="100,100"># ZONE 2: THE LAB
 **FAILURE! **
 
 The computer screeches. A robotic voice warns: &quot;ERROR: Too many groups! T-Tests can only handle&#39;&#39; two&#39;&#39; populations at a time! Multiple comparisons detected. Type 1 Error imminent!&quot; The centrifuge spins out of control and shatters a vial of virus. 
@@ -1243,9 +637,9 @@ How to choose a stastical test:
 
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="50" name="Z2 Q3 Fail Chi" tags="lab-bg" position="1425,1675" size="100,100">**FAILURE! **
+[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="21" name="Z2 Q3 Fail Chi" tags="lab-bg" position="1425,1675" size="100,100">**FAILURE! **
 
 The computer buzzes with a low, disappointing hum. &quot;ERROR: Variable &#39;Viral Load&#39; is CONTINUOUS (numbers), but Chi-Square requires CATEGORICAL inputs (names/labels).&quot; The machine rejects your samples, spitting them onto the floor. Try Again.
 
@@ -1271,20 +665,9 @@ How to choose a stastical test:
 
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="51" name=" Zone 2 Complete" tags="lab-bg" position="700,1725" size="100,100"># ZONE 2 CLEARED
-
-Phew! You knew that ANOVA is the right test, so you get a break for a minute. 
-
-Or so you thought...
-
-Dr. Julian stumbles into the lab, probably the only attending who stuck around for the call shift. Gasping, his last words...
-&quot;Exxtraaa creddddittt...learning opportunityyyyy......&quot;
-
-
-
-</tw-passagedata><tw-passagedata pid="52" name="Z2 EC2 ROC" tags="lab-bg" position="1400,2150" size="100,100"># EXTRA CREDIT
+[[Try Again-&gt;Z2 Q3 Stats]]</tw-passagedata><tw-passagedata pid="22" name="Z2 EC2 ROC" tags="lab-bg" position="1400,2150" size="100,100"># EXTRA CREDIT
 
 You rummage through Dr. Julian&#39;s white coat and find...a scanner? (What&#39;s that doing there?)
 It seems to be a Zombie Detector! 
@@ -1315,7 +698,7 @@ Is that...a Receiver Operating Characteristic (ROC) Curve? Surely that&#39;s not
 [[Sorry Dr. Julian, I&#39;m a failure. (Dr. Julian eats you, you die). -&gt;Dead]]
 [[Um, seriously, I don&#39;t know. (Run away, who needs extra credit! -&gt;Checkpoint Bravo]]
 [[Its... a measure of quality of the test? -&gt;EC2 Answer]]
-</tw-passagedata><tw-passagedata pid="53" name="EC2 Answer" tags="lab-bg" position="1400,2250" size="100,100"># CORRECT
+</tw-passagedata><tw-passagedata pid="23" name="EC2 Answer" tags="lab-bg" position="1400,2250" size="100,100"># CORRECT
 
 Apparently the scanner has an instruction manual? 
 
@@ -1385,7 +768,7 @@ Wait, I&#39;m still confused. Picture?
 [[Yawn... I didn&#39;t read all that...Go to next level. -&gt;Checkpoint Bravo]]
 [[But what about my break? -&gt;Supply Closet]]
 
-</tw-passagedata><tw-passagedata pid="54" name=" Checkpoint Bravo Fail" tags="sec-bg" position="1875,2100" size="100,100"># ACCESS DENIED. 
+</tw-passagedata><tw-passagedata pid="24" name=" Checkpoint Bravo Fail" tags="sec-bg" position="1875,2100" size="100,100"># ACCESS DENIED. 
 You get sprayed with hydrofluoric acid.
 
 **The Error:**
@@ -1403,7 +786,7 @@ You failed to distinguish a False Alarm (Confounding) from a Contextual Rule (Ef
 [[Try Again-&gt;Checkpoint Bravo]]
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]</tw-passagedata><tw-passagedata pid="55" name="Z1 Q1 Pop" tags="level-1-bg" position="1600,225" size="100,100"># ZONE 1: THE ER
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]</tw-passagedata><tw-passagedata pid="25" name="Z1 Q1 Pop" tags="level-1-bg" position="1600,225" size="100,100"># ZONE 1: THE ER
 **AUTHORIZATION REQUIRED: DATA ANALYSIS**
 
 You see a massive number of elderly patients (80s), some adults, and even a few infants. (Zombie babies?)
@@ -1437,7 +820,7 @@ This is a **Negative Skew**. In this distribution, which statistical value is lo
 
 [[A. The Median-&gt;Zone1 Q1 Fail]]
 [[B. The Mean-&gt;Z1 Q2 Sens]]
-[[C. The Mode-&gt;Zone1 Q1 Fail]]</tw-passagedata><tw-passagedata pid="56" name="Zone1 Q1 Fail" tags="level-1-bg" position="1475,350" size="100,100"># ZONE 1: THE ER
+[[C. The Mode-&gt;Zone1 Q1 Fail]]</tw-passagedata><tw-passagedata pid="26" name="Zone1 Q1 Fail" tags="level-1-bg" position="1475,350" size="100,100"># ZONE 1: THE ER
 **WRONG.**
 
 Median finds the middle number in a list of ordered values:
@@ -1482,7 +865,7 @@ In a normal distribution, the mean and median are the same!
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
-[[Try Again-&gt;Z1 Q1 Pop]]</tw-passagedata><tw-passagedata pid="57" name="Z1 Q2 Sens" tags="level-1-bg" position="1600,350" size="100,100"># ZONE 1: THE ER
+[[Try Again-&gt;Z1 Q1 Pop]]</tw-passagedata><tw-passagedata pid="27" name="Z1 Q2 Sens" tags="level-1-bg" position="1600,350" size="100,100"># ZONE 1: THE ER
 **CORRECT.**
 The Mean is pulled toward the tail. 
 
@@ -1496,13 +879,13 @@ Now that you know *who* is sick, you need to stop them from entering the Safe Zo
 For a **Screening Test** where the penalty for missing a zombie is &quot;Everyone Dies,&quot; which do you prioritize?
 
 [[A. Specificity-&gt;Zone1 Q2 Fail]]
-[[B. Sensitivity-&gt;Z1 Q3 PPV]]</tw-passagedata><tw-passagedata pid="58" name="Z1 Intro" tags="level-1-bg" position="1700,125" size="100,100"># ZONE 1: THE ER
+[[B. Sensitivity-&gt;Z1 Q3 PPV]]</tw-passagedata><tw-passagedata pid="28" name="Z1 Intro" tags="level-1-bg" position="1700,125" size="100,100"># ZONE 1: THE ER
 
 You burst through the double doors. The ER is chaos. The Triage Nurse hands you a tablet connected to a surveillance drone flying over Kansas City.
 
 &quot;Doctor, look at the heat map! The infection is spreading, but the data is weird. We need you to interpret this before we deploy the National Guard.&quot;
 
-[[Analyze the Heat Map-&gt;Z1 Q1 Pop]]</tw-passagedata><tw-passagedata pid="59" name="Zone1 Q2 Fail" tags="level-1-bg" position="1475,475" size="100,100"># ZONE 1: THE ER
+[[Analyze the Heat Map-&gt;Z1 Q1 Pop]]</tw-passagedata><tw-passagedata pid="29" name="Zone1 Q2 Fail" tags="level-1-bg" position="1475,475" size="100,100"># ZONE 1: THE ER
 **WRONG.**
 Specificity rules IN (SpIN), but is a bad test to catch any possible zombie. 
 
@@ -1532,7 +915,7 @@ You successfully confirmed the true zombies, but you missed a few false negative
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 [[Try Again-&gt;Z1 Q2 Sens]]
-</tw-passagedata><tw-passagedata pid="60" name="Z1 Q3 PPV" tags="level-1-bg" position="1600,475" size="100,100"># ZONE 1: THE ER
+</tw-passagedata><tw-passagedata pid="30" name="Z1 Q3 PPV" tags="level-1-bg" position="1600,475" size="100,100"># ZONE 1: THE ER
 **CORRECT.**
 You set the scanners to High Sensitivity. It was the right choice to keep the safe zone safe, but now you have a new problem: **The alarms won&#39;t stop ringing.**
 
@@ -1546,7 +929,7 @@ Suddenly, **Dr. Kitchen** appears, and before you can stop her from breaking in,
 Despite the positive test, what is the most likely reality?
 
 [[A. Dr. Kitchen is definitely infected, you&#39;re dead now.-&gt;Zone1 Q3 Fail]]
-[[B. It is likely a False Positive-&gt;Z1 Q4 LR]]</tw-passagedata><tw-passagedata pid="61" name="Zone1 Q3 Fail" tags="level-1-bg" position="1475,600" size="100,100"># ZONE 1: THE ER
+[[B. It is likely a False Positive-&gt;Z1 Q4 LR]]</tw-passagedata><tw-passagedata pid="31" name="Zone1 Q3 Fail" tags="level-1-bg" position="1475,600" size="100,100"># ZONE 1: THE ER
 **WRONG.**
 
 You panicked and assumed a Positive Test meant &quot;Zombie.&quot; You just threw Dr. Kitchen to be eaten by Zombies! 
@@ -1576,7 +959,7 @@ Even with a great test, if the prevalence is low (1%), the Positive Predictive V
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt;Z1 Q3 PPV]]</tw-passagedata><tw-passagedata pid="62" name="Zone1 Q4 Fail" tags="level-1-bg" position="1475,725" size="100,100">#ZONE 1: ER
+[[Try Again-&gt;Z1 Q3 PPV]]</tw-passagedata><tw-passagedata pid="32" name="Zone1 Q4 Fail" tags="level-1-bg" position="1475,725" size="100,100">#ZONE 1: ER
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
@@ -1625,23 +1008,23 @@ Does the scanner physically change or get &quot;worse&quot; just because you wal
 
 [[Try Again-&gt;Z1 Q4 LR]]
 
-</tw-passagedata><tw-passagedata pid="63" name="Z1 Q5 Lead" tags="level-1-bg" position="1600,725" size="100,100">#ZONE 1: ER
+</tw-passagedata><tw-passagedata pid="33" name="Z1 Q5 Lead" tags="level-1-bg" position="1600,725" size="100,100">#ZONE 1: ER
 **CORRECT.**
 You stick with Likelihood Ratios. The machine is solid.
 
-However, Dr. Wooldridge runs in, excited. &quot;Forget your old scanner! We bought the **Mark-II Early Detector**! Look at the data!&quot;
+However, Dr. Kitchen runs in, excited. &quot;Forget your old scanner! We bought the **Mark-II Early Detector**! Look at the data!&quot;
 
 * **Old Scanner:** Detects infection when eyes turn red (Day 3). Patient dies on Day 7. (**Survival time = 4 days**).
 * **Mark-II Scanner:** Detects infection immediately (Day 0). Patient dies on Day 7. (**Survival time = 7 days**).
 
-&quot;It&#39;s a miracle!&quot; he says. &quot;We improved survival by 3 days!&quot;
+&quot;It&#39;s a miracle!&quot; she says. &quot;We improved survival by 3 days!&quot;
 
 **The Question:**
 You look at the morgue logs. The patients are dying at the exact same moment. This isn&#39;t better survival, it&#39;s...
 
 [[A. Length Time Bias-&gt;Zone1 Q5 Fail]]
 [[B. Lead Time Bias-&gt;Z1 Hub]]
-[[C. Selection Bias-&gt;Zone1 Q5 Fail]]</tw-passagedata><tw-passagedata pid="64" name="Zone1 Q5 Fail" tags="level-1-bg" position="1475,850" size="100,100"># ZONE 1: ER
+[[C. Selection Bias-&gt;Zone1 Q5 Fail]]</tw-passagedata><tw-passagedata pid="34" name="Zone1 Q5 Fail" tags="level-1-bg" position="1475,850" size="100,100"># ZONE 1: ER
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
@@ -1677,7 +1060,7 @@ Lead Time Bias:
 (hide: ?graphPopup)
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 
 
@@ -1701,7 +1084,7 @@ Lead Time Bias:
 ]
 
 [[Try Again-&gt;Z1 Q5 Lead]]
-</tw-passagedata><tw-passagedata pid="65" name="Z1 Hub" tags="level-1-bg" position="1700,825" size="100,100"># ZONE 1: THE ER
+</tw-passagedata><tw-passagedata pid="35" name="Z1 Hub" tags="level-1-bg" position="1700,825" size="100,100"># ZONE 1: THE ER
 **ZONE 1 CLEARED.**
 You have secured the ER. The scanners are calibrated, and you&#39;ve debunked the PD&#39;s bad data.
 
@@ -1709,7 +1092,7 @@ Before you leave, **you hear a banging from the psych pod...**
 
 [[Check it out for some extra credit...-&gt;Zone1 EC1 Screening]]
 [[Skip to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]
-[[I&#39;m almost dead! Are potions real in this game? -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="66" name=" Checkpoint Alpha Clear" tags="stairwell" position="2000,1125" size="100,100"># ACCESS GRANTED
+[[I&#39;m almost dead! Are potions real in this game? -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="36" name=" Checkpoint Alpha Clear" tags="sec-bg" position="2000,1125" size="100,100"># ACCESS GRANTED
 **CORRECT**
 
 &quot;Copy that,&quot; the Security-Man says. &quot;We are suppressing the **Incidence** of new infections.&quot;
@@ -1718,7 +1101,7 @@ By stopping the flow of new zombies, you eventually gain control of the total cr
 
 The doors to the **HOSPITAL LABORATORY ** hiss open.
 
-[[Enter the Lab.-&gt;Z2 Intro]]</tw-passagedata><tw-passagedata pid="67" name="Z2 Intro" tags="lab-bg" position="1700,1200" size="100,100"># ZONE 2: THE LAB
+[[Enter the Lab.-&gt;Z2 Intro]]</tw-passagedata><tw-passagedata pid="37" name="Z2 Intro" tags="lab-bg" position="1700,1200" size="100,100"># ZONE 2: THE LAB
 
 You push through the heavy fire doors at the bottom of the stairwell. The air here is colder, smelling of ozone and disinfectant.
 
@@ -1726,7 +1109,7 @@ Rows of microscopes and centrifuges sit silent. The main computer terminal hums,
 
 To find a cure, you can&#39;t just react to the zombies -- you have to understand them. You need to design the right study, pick the right test, and avoid the statistical traps that killed the researchers before you.
 
-[[Boot up the Research Terminal -&gt;Z2 Q1 Design]]</tw-passagedata><tw-passagedata pid="68" name="Z2 Q1 Design" tags="lab-bg" position="1600,1300" size="100,100"># ZONE 2: THE LAB
+[[Boot up the Research Terminal -&gt;Z2 Q1 Design]]</tw-passagedata><tw-passagedata pid="38" name="Z2 Q1 Design" tags="lab-bg" position="1600,1300" size="100,100"># ZONE 2: THE LAB
 **AUTHORIZATION REQUIRED: STUDY DESIGN PROTOCOL**
 
 The lab is quiet. Too quiet. You need to find out what caused this outbreak.
@@ -1743,7 +1126,7 @@ You started with the **Disease** and looked back for the **Exposure**. What stud
 [[A. Retrospective Cohort -&gt;Z2 Q1 Fail]]
 [[B. Case-Control -&gt;Z2 Q2 Bias]]
 [[C. Cross-Sectional -&gt;Z2 Q1 Fail]]
-[[D. Randomized Controlled Trial -&gt;Z2 Q1 Fail]]</tw-passagedata><tw-passagedata pid="69" name="Z2 Q1 Fail" tags="lab-bg" position="1475,1425" size="100,100">(set: $hp to $hp - 10)
+[[D. Randomized Controlled Trial -&gt;Z2 Q1 Fail]]</tw-passagedata><tw-passagedata pid="39" name="Z2 Q1 Fail" tags="lab-bg" position="1475,1425" size="100,100">(set: $hp to $hp - 10)
 # ZONE 2: THE LAB
 **Wrong Study**
 
@@ -1782,7 +1165,7 @@ Since you started with **Zombies (Disease)**, this is Case-Control!
 [[GET BACK TO WORK (Try Again)-&gt;Z2 Q1 Design]]
 
 
-</tw-passagedata><tw-passagedata pid="70" name="Z2 Q2 Bias" tags="lab-bg" position="1600,1425" size="100,100"># ZONE 2: THE LAB
+</tw-passagedata><tw-passagedata pid="40" name="Z2 Q2 Bias" tags="lab-bg" position="1600,1425" size="100,100"># ZONE 2: THE LAB
 **CORRECT.**
 You logged the study  as **Case-Control** (Starting with Disease -&gt; Looking back).
 Here&#39;s a picture if you need it: 
@@ -1808,7 +1191,7 @@ Here&#39;s a picture if you need it:
 
 You begin interviewing the subjects about potential causes.
 * **The Zombies:** Can&#39;t talk. 
-* **The Survivors:** They are terrified and trying to find a reason why they survived. They tell you: *&quot;I definitely remember eating the tacos last Tuesday! That must be it!*
+* **The Survivors:** They are terrified and trying to find a reason why they survived. They tell you: *&quot;I definitely remember eating the tacos last Tuesday! That must be it!&quot;*
 
 **The Question:**
 You suspect the Survivors are remembering things differently because they know they are healthy, or because they are scrutinizing their past behavior more than the zombies (who are dead).
@@ -1817,7 +1200,7 @@ This specific type of error is:
 
 [[A. Selection Bias -&gt;Z2 Q2 Fail]]
 [[B. Recall Bias -&gt;Z2 Q3 Stats]]
-[[C. Late-Look Bias -&gt;Z2 Q2 Fail]]</tw-passagedata><tw-passagedata pid="71" name="Z1 Q4 LR" tags="level-1-bg" position="1600,600" size="100,100">#Zone 1: THE ER
+[[C. Late-Look Bias -&gt;Z2 Q2 Fail]]</tw-passagedata><tw-passagedata pid="41" name="Z1 Q4 LR" tags="level-1-bg" position="1600,600" size="100,100">#Zone 1: THE ER
 **CORRECT.**
 It was a False Positive. Dr. Kitchen is fine, but she&#39;s furious. &quot;Your test is garbage in low-prevalence zones!&quot; she yells.
 
@@ -1831,7 +1214,7 @@ Which value is fixed and &quot;portable&quot; across different populations?
 [[A. Negative Predictive Value (NPV)-&gt;Zone1 Q4 Fail]]
 [[B. Likelihood Ratio (LR)-&gt;Z1 Q5 Lead]]
 
-</tw-passagedata><tw-passagedata pid="72" name="Z2 Q2 Fail" tags="lab-bg" position="1475,1550" size="100,100"># ZONE 2: THE LAB
+</tw-passagedata><tw-passagedata pid="42" name="Z2 Q2 Fail" tags="lab-bg" position="1475,1550" size="100,100"># ZONE 2: THE LAB
 **WRONG.**
 
 * **Selection Bias** is when you choose the wrong people for your groups (e.g., only interviewing people who run fast enough to escape).
@@ -1863,9 +1246,9 @@ You might want this:
 
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Death_BadMath&quot;)]
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt;Z2 Q2 Bias]]</tw-passagedata><tw-passagedata pid="73" name="Z2 Q3 Stats" tags="lab-bg" position="1600,1550" size="100,100"># ZONE 2: THE LAB
+[[Try Again-&gt;Z2 Q2 Bias]]</tw-passagedata><tw-passagedata pid="43" name="Z2 Q3 Stats" tags="lab-bg" position="1600,1550" size="100,100"># ZONE 2: THE LAB
 **CORRECT.**
 It was Recall Bias. You decide to ignore the interviews and look at the **blood samples** instead. Hard data doesn&#39;t lie.
 
@@ -1876,7 +1259,7 @@ The computer give you the following options:
 [[Run a T-Test -&gt;Z2 Q3 Fail T]] 
 [[Run a Chi-Square -&gt;Z2 Q3 Fail Chi]] 
 [[Run ANOVA -&gt; Z2 Q4 Error]]
-[[None of these are right! Truman&#39;s computers never work...-&gt;Z2 Q3 Fail All]]</tw-passagedata><tw-passagedata pid="74" name=" Z2 Q4 Error" tags="lab-bg" position="1600,1675" size="100,100"># ZONE 2: THE LAB
+[[None of these are right! Truman&#39;s computers never work...-&gt;Z2 Q3 Fail All]]</tw-passagedata><tw-passagedata pid="44" name=" Z2 Q4 Error" tags="lab-bg" position="1600,1675" size="100,100"># ZONE 2: THE LAB
 **CORRECT.**
 You selected the ANOVA for multiple groups. The data confirms a specific protein spike in the zombies!
 
@@ -1894,7 +1277,7 @@ What type of error is this?
 
 [[A. Type I Error (Alpha) -&gt;Z2 Q4 Fail]]
 [[B. Type II Error (Beta) -&gt;Z2 Q5 Distro]]
-</tw-passagedata><tw-passagedata pid="75" name="Z2 Q4 Fail" tags="lab-bg" position="1475,1800" size="100,100">#ZONE 2: THE LAB
+</tw-passagedata><tw-passagedata pid="45" name="Z2 Q4 Fail" tags="lab-bg" position="1475,1800" size="100,100">#ZONE 2: THE LAB
 **WRONG.**
 You said &quot;Type I Error&quot; (False Positive).
 
@@ -1929,7 +1312,7 @@ Need extra help?
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
-[[Try Again-&gt; Z2 Q4 Error]]</tw-passagedata><tw-passagedata pid="76" name="Z2 Q5 Distro" tags="lab-bg" position="1600,1800" size="100,100"># ZONE 2: THE LAB
+[[Try Again-&gt; Z2 Q4 Error]]</tw-passagedata><tw-passagedata pid="46" name="Z2 Q5 Distro" tags="lab-bg" position="1600,1800" size="100,100"># ZONE 2: THE LAB
 
 **CORRECT.**
 It was a Type II Error (Beta). You missed the infection, sorry Max! To fix this, you recalibrate the machines to be more sensitive.
@@ -1947,7 +1330,7 @@ According to the rules of the Normal Distribution, what percentage of the vials 
 
 [[A. 68% -&gt;Z2 Q5 Fail]]
 [[B. 95% -&gt;Z2 Hub]]
-[[C. 99.7% -&gt;Z2 Q5 Fail]]</tw-passagedata><tw-passagedata pid="77" name="Z2 Q5 Fail" tags="lab-bg" position="1475,1900" size="100,100"># ZONE 2: THE LAB
+[[C. 99.7% -&gt;Z2 Q5 Fail]]</tw-passagedata><tw-passagedata pid="47" name="Z2 Q5 Fail" tags="lab-bg" position="1475,1900" size="100,100"># ZONE 2: THE LAB
 
 **WRONG ** 
 
@@ -1984,7 +1367,7 @@ Here&#39;s a picture:
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 
 
-[[Try Again -&gt;Z2 Q5 Distro]]</tw-passagedata><tw-passagedata pid="78" name="Z2 Hub" tags="lab-bg" position="1700,1900" size="100,100"># ZONE 2 CLEARED.
+[[Try Again -&gt;Z2 Q5 Distro]]</tw-passagedata><tw-passagedata pid="48" name="Z2 Hub" tags="lab-bg" position="1700,1900" size="100,100"># ZONE 2 CLEARED.
 
 **CORRECT.** If residency taught you anything, it&#39;s how to make errors.
 
@@ -2004,7 +1387,7 @@ Do you have time to double-check your significance levels before the breach?
 
 [[Inspect the Lab Notes (Extra Credit: P-Values) -&gt;Z2 EC2 ROC]]
 [[Skip to Checkpoint Bravo  -&gt;Checkpoint Bravo]]
-[[Wait in the Supply Closet for the others -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="79" name="Checkpoint Bravo Clear" tags="stairwell" position="2000,2100" size="100,100"># ACCESS GRANTED. 
+[[Wait in the Supply Closet for the others -&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="49" name="Checkpoint Bravo Clear" tags="stairwell" position="2000,2100" size="100,100"># ACCESS GRANTED. 
 
 
 **The Lesson:**
@@ -2013,18 +1396,18 @@ Do you have time to double-check your significance levels before the breach?
 
 You step through the doors to the depths of the **TRUMAN PHARMACY**
 [[Enter Zone 3: The Pharmacy -&gt;Z3 Intro]]
-</tw-passagedata><tw-passagedata pid="80" name="Z3 Intro" tags="pharm-bg" position="1700,2200" size="100,100"># ZONE 3: THE PHARMACY
+</tw-passagedata><tw-passagedata pid="50" name="Z3 Intro" tags="pharm-bg" position="1700,2200" size="100,100"># ZONE 3: THE PHARMACY
 
 
 You enter the darkened pharmacy. The air smells of dust and expired antibiotics.
 
 This is where the real work happens. It&#39;s not enough to just &quot;find&quot; a drug -- you have to prove it works. The shelves are full of experimental compounds: some are cures, some are poison, and some are just sugar pills.
 
-To save the city, you need to master **Clinical Trials**. You need to calculate the risks, understand how to get the drug to market,, and avoid the statistical errors that doom most studies.
+To save the city, you need to master **Clinical Trials**. You need to calculate the risks, understand how to get the drug to market, and avoid the statistical errors that doom most studies.
 
 You approach the refrigerated storage unit...
 
-[[Inspect the Experimental Vials -&gt; Z3 Q1 Phases]]</tw-passagedata><tw-passagedata pid="81" name=" Z3 Q1 Phases" tags="pharm-bg" position="1600,2300" size="100,100"># ZONE 3: THE PHARMACY
+[[Inspect the Experimental Vials -&gt; Z3 Q1 Phases]]</tw-passagedata><tw-passagedata pid="51" name=" Z3 Q1 Phases" tags="pharm-bg" position="1600,2300" size="100,100"># ZONE 3: THE PHARMACY
 
 **AUTHORIZATION REQUIRED: CLINICAL TRIALS**
 
@@ -2042,7 +1425,7 @@ Which batch is **Phase II**?
 
 [[A. Batch Alpha -&gt; Z3 Q1 Fail]]
 [[B. Batch Beta -&gt;Z3 Q2 NNT]]
-[[C. Batch Gamma -&gt; Z3 Q1 Fail]]</tw-passagedata><tw-passagedata pid="82" name="Z3 Q2 NNT" tags="pharm-bg" position="1600,2425" size="100,100"># ZONE 3: THE PHARMACY
+[[C. Batch Gamma -&gt; Z3 Q1 Fail]]</tw-passagedata><tw-passagedata pid="52" name="Z3 Q2 NNT" tags="pharm-bg" position="1600,2425" size="100,100"># ZONE 3: THE PHARMACY
 
 **CORRECT.**
 You grab the **Batch Bravo (Phase II)** vials. The Chief is happy.
@@ -2060,7 +1443,7 @@ Based on this data, what is the **Number Needed to Treat (NNT)** to save ONE lif
 
 [[A. NNT = 5 -&gt;Z3 Q3 OR/RR]]
 [[B. NNT = 20 -&gt;Z3 Q2 NNT Fail]]
-[[C. NNT = 2 -&gt;Z3 Q2 NNT Fail]]</tw-passagedata><tw-passagedata pid="83" name=" Z3 Q1 Fail" tags="pharm-bg" position="1475,2425" size="100,100"># ZONE 3: THE PHARMACY
+[[C. NNT = 2 -&gt;Z3 Q2 NNT Fail]]</tw-passagedata><tw-passagedata pid="53" name=" Z3 Q1 Fail" tags="pharm-bg" position="1475,2425" size="100,100"># ZONE 3: THE PHARMACY
 
 **INCORRECT.**
 
@@ -2075,7 +1458,7 @@ The Chief wanted to know if it *works* (Phase II).
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 
-[[Try Again -&gt; Z3 Q1 Phases]]</tw-passagedata><tw-passagedata pid="84" name="Z3 Q3 OR/RR" tags="pharm-bg" position="1600,2550" size="100,100"># ZONE 3: THE PHARMACY
+[[Try Again -&gt; Z3 Q1 Phases]]</tw-passagedata><tw-passagedata pid="54" name="Z3 Q3 OR/RR" tags="pharm-bg" position="1600,2550" size="100,100"># ZONE 3: THE PHARMACY
 
 **CORRECT.**
 The NNT is 5. You pocket the 20 vials, knowing you can save exactly 4 people.
@@ -2091,7 +1474,7 @@ Which statistical measure are you allowed to calculate from this data?
 
 [[A. Relative Risk (RR) -&gt;Z3 Q3 OR/RR Fail]]
 [[B. Odds Ratio (OR) -&gt;Z3 Q4 Power]]
-[[C. Hazard Ratio (HR) -&gt;Z3 Q3 OR/RR Fail]]</tw-passagedata><tw-passagedata pid="85" name="Z3 Q2 NNT Fail" tags="pharm-bg" position="1475,2550" size="100,100"># ZONE 3: THE PHARMACY
+[[C. Hazard Ratio (HR) -&gt;Z3 Q3 OR/RR Fail]]</tw-passagedata><tw-passagedata pid="55" name="Z3 Q2 NNT Fail" tags="pharm-bg" position="1475,2550" size="100,100"># ZONE 3: THE PHARMACY
 
 **INCORRECT.**
 
@@ -2111,7 +1494,7 @@ With 20 vials, you can save 4 people.
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 
-[[Try Again -&gt;Z3 Q2 NNT]]</tw-passagedata><tw-passagedata pid="86" name="Z3 Q3 OR/RR Fail" tags="pharm-bg" position="1475,2675" size="100,100"># ZONE 3: THE PHARMACY
+[[Try Again -&gt;Z3 Q2 NNT]]</tw-passagedata><tw-passagedata pid="56" name="Z3 Q3 OR/RR Fail" tags="pharm-bg" position="1475,2675" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2158,7 +1541,7 @@ With 20 vials, you can save 4 people.
 Since you are looking at a logbook of *outcomes* (Dead/Alive), you are stuck with the **Odds Ratio**.
 
 [[Try Again -&gt;Z3 Q3 OR/RR]]
-</tw-passagedata><tw-passagedata pid="87" name="Z3 Q4 Power" tags="pharm-bg" position="1600,2675" size="100,100"># ZONE 3: THE PHARMACY
+</tw-passagedata><tw-passagedata pid="57" name="Z3 Q4 Power" tags="pharm-bg" position="1600,2675" size="100,100"># ZONE 3: THE PHARMACY
 **CORRECT.**
 It was retrospective, so you calculated the Odds Ratio.
 
@@ -2172,7 +1555,7 @@ You decide to repeat this exact study with **400 zombies**. Assuming the drug re
 
 [[A. P-value increases || Power decreases -&gt;Z3 Q4 Power Fail]]
 [[B. P-value decreases || Power increases -&gt;Z3 Q5 ITT]]
-[[C. P-value stays the same || CI widens -&gt;Z3 Q4 Power Fail]]</tw-passagedata><tw-passagedata pid="88" name="Z3 Q4 Power Fail" tags="pharm-bg" position="1475,2800" size="100,100"># ZONE 3: THE PHARMACY
+[[C. P-value stays the same || CI widens -&gt;Z3 Q4 Power Fail]]</tw-passagedata><tw-passagedata pid="58" name="Z3 Q4 Power Fail" tags="pharm-bg" position="1475,2800" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2207,7 +1590,7 @@ Need more help?
         &lt;/br&gt;
         
     &lt;/div&gt;
-* With 4 Zombies, it might have been chance! But when you increase the sample size, you have more data to prove that your treatment actually works. The p-value (probability that your conclusion is chance) goes DOWN. </tw-passagedata><tw-passagedata pid="89" name="Z3 Q5 ITT" tags="pharm-bg" position="1600,2800" size="100,100"># ZONE 3: THE PHARMACY
+* With 4 Zombies, it might have been chance! But when you increase the sample size, you have more data to prove that your treatment actually works. The p-value (probability that your conclusion is chance) goes DOWN. </tw-passagedata><tw-passagedata pid="59" name="Z3 Q5 ITT" tags="pharm-bg" position="1600,2800" size="100,100"># ZONE 3: THE PHARMACY
 **CORRECT.**
 You increase the sample size, and the P-value drops to 0.01. The drug works!
 
@@ -2223,7 +1606,7 @@ To follow the **Intention-to-Treat (ITT)** principle, which preserves the benefi
 
 [[A. Exclude them from the data completely -&gt;Z3 Q5 ITT Fail]]
 [[B. Analyze them as if they TOOK the pill -&gt;Z3 Hub]]
-[[C. Move them to the Placebo Group -&gt;Z3 Q5 ITT Fail]]</tw-passagedata><tw-passagedata pid="90" name="Z3 Q5 ITT Fail" tags="pharm-bg" position="1475,2925" size="100,100"># ZONE 3: THE PHARMACY
+[[C. Move them to the Placebo Group -&gt;Z3 Q5 ITT Fail]]</tw-passagedata><tw-passagedata pid="60" name="Z3 Q5 ITT Fail" tags="pharm-bg" position="1475,2925" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2236,7 +1619,7 @@ To follow the **Intention-to-Treat (ITT)** principle, which preserves the benefi
 
 You must count them in the Treatment group, even if they didn&#39;t treat themselves.
 
-[[Try Again -&gt;Z3 Q5 ITT]]</tw-passagedata><tw-passagedata pid="91" name="Z3 Hub" tags="pharm-bg" position="1700,2900" size="100,100"># ZONE 3 CLEARED
+[[Try Again -&gt;Z3 Q5 ITT]]</tw-passagedata><tw-passagedata pid="61" name="Z3 Hub" tags="pharm-bg" position="1700,2900" size="100,100"># ZONE 3 CLEARED
 
 You have mastered the Clinical Trials. You identified the Phases, calculated NNT and Odds Ratios, fixed the Power, and upheld the ITT principle.
 
@@ -2253,7 +1636,7 @@ Inside, it&#39;s freezing. This is the Secret Storage vault. On the back wall, s
 [[Analyze the Protocol Z Chart (Start Extra Credit) -&gt;Z3 EC3 HR]]
 [[Ignore it, its probably some conspiracy theory... -&gt;Checkpoint Charlie]]
 [[Take a Pitstop in the Supply Closet-&gt;Supply Closet]]
-</tw-passagedata><tw-passagedata pid="92" name="Z3 EC3 HR" tags="pharm-bg" position="1400,3100" size="100,100"># ZONE 3: THE PHARMACY
+</tw-passagedata><tw-passagedata pid="62" name="Z3 EC3 HR" tags="pharm-bg" position="1400,3100" size="100,100"># ZONE 3: THE PHARMACY
 **EXTRA CREDIT: THE VAULT CHART**
 
 &lt;img src=&quot;https://i.imgur.com/65if9OI.png&quot; width=&quot;100%&quot;&gt;
@@ -2270,7 +1653,7 @@ The Pharmacist who wrote this note was excited. What does a Hazard Ratio of 0.50
 
 [[A. They live exactly twice as long as the Standard group -&gt;Z3 EC3 HR Fail]]
 [[B. At any given moment, they have half the risk of dying compared to the Standard group -&gt;Z3 EC3 HR Correct]]
-[[C. 50% of them are cured forever -&gt;Z3 EC3 HR Fail]]</tw-passagedata><tw-passagedata pid="93" name="Z3 EC3 HR Fail" tags="pharm-bg" position="1350,3225" size="100,100"># ZONE 3: THE PHARMACY
+[[C. 50% of them are cured forever -&gt;Z3 EC3 HR Fail]]</tw-passagedata><tw-passagedata pid="63" name="Z3 EC3 HR Fail" tags="pharm-bg" position="1350,3225" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2286,7 +1669,8 @@ Hazard Ratios don&#39;t measure &quot;Total Time&quot; or &quot;Total Percent Cu
 It&#39;s like comparing two cars: The Protocol Z car is driving toward the cliff at 50mph, while the Standard car is driving at 100mph.
 
 No extra credit for you! 
-[[Proceed to Security Checkpoint Charlie-&gt;Checkpoint Charlie]]</tw-passagedata><tw-passagedata pid="94" name="Z3 EC3 HR Correct" tags="pharm-bg" position="1462.5,3225" size="100,100">**CORRECT!**
+[[Proceed to Security Checkpoint Charlie-&gt;Checkpoint Charlie]]</tw-passagedata><tw-passagedata pid="64" name="Z3 EC3 HR Correct" tags="pharm-bg" position="1462.5,3225" size="100,100"># ZONE 3: THE PHARMACY
+**CORRECT!**
 
 You understand the data.
 **Hazard Ratio** measures the relative risk of the event (death) happening at any instant.
@@ -2299,7 +1683,7 @@ An HR of 0.5 means Protocol Z cuts the instantaneous risk of death in half. It w
 These will help you on a future question! 
 (set: $item_gloves to true)
 
-[[Leave the Vault and Proceed to Checkpoint Charlie -&gt;Checkpoint Charlie]]</tw-passagedata><tw-passagedata pid="95" name=" Checkpoint Charlie Fail" tags="sec-bg" position="1850,3225" size="100,100"># SECURITY CHECKPOINT CHARLIE
+[[Leave the Vault and Proceed to Checkpoint Charlie -&gt;Checkpoint Charlie]]</tw-passagedata><tw-passagedata pid="65" name=" Checkpoint Charlie Fail" tags="sec-bg" position="1850,3225" size="100,100"># SECURITY CHECKPOINT CHARLIE
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2315,7 +1699,7 @@ Since the dots go UP and to the RIGHT, the correlation must be **Positive (+)**.
 
 [[Try Again -&gt;Checkpoint Charlie]]
 
-</tw-passagedata><tw-passagedata pid="96" name=" Checkpoint Charlie Correct" tags="stairwell" position="1975,3225" size="100,100"># CHECKPOINT CLEARED 
+</tw-passagedata><tw-passagedata pid="66" name=" Checkpoint Charlie Correct" tags="sec-bg" position="1975,3225" size="100,100"># CHECKPOINT CLEARED 
 **ACCESS GRANTED.**
 
 The server accepts the data: **STRONG POSITIVE CORRELATION CONFIRMED.**
@@ -2324,7 +1708,7 @@ The drug works. The more you give, the longer they live. You have secured the ph
 
 You rush through the stairwell, huffing and puffing. Next stop: **The Wards**.
 
-[[Proceed -&gt;Z4 Intro]]</tw-passagedata><tw-passagedata pid="97" name="Z4 Intro" tags="wards-bg" position="1700,3400" size="100,100"># ZONE 4: THE WARDS
+[[Proceed -&gt;Z4 Intro]]</tw-passagedata><tw-passagedata pid="67" name="Z4 Intro" tags="wards-bg" position="1700,3400" size="100,100"># ZONE 4: THE WARDS
 
 The stairwell doors slam open on the 4th Floor. It is dark. The emergency lights are flickering, and the air is thick with smoke.
 
@@ -2336,7 +1720,7 @@ To survive this floor, you must master **Quality Improvement (QI)**. You need to
 
 You stumble toward the Nurses&#39; Station, where Dr. McBride is shouting about the power grid...
 
-[[Help Dr. McBride -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="98" name="Z4 Q1 RCA" tags="wards-bg" position="1600,3500" size="100,100"># ZONE 4: THE WARDS
+[[Help Dr. McBride -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="68" name="Z4 Q1 RCA" tags="wards-bg" position="1600,3500" size="100,100"># ZONE 4: THE WARDS
 
 Dr. McBride is shaking. &quot;We had a breach in 4 Red. A technician opened the Inner Door while the Outer Door was still open. The airlock failed, and the infection got in.&quot;
 
@@ -2350,7 +1734,7 @@ You convene a **Root Cause Analysis (RCA)**.
 [[B. Policy: Require two nurses to turn keys simultaneously to open a door. -&gt;Z4 Q1 RCA Fail Fix]]
 [[C. Forcing Function: Install an electronic interlock that physically prevents one door from opening if the other is unsealed. -&gt;Z4 Q2 PDSA]]
 [[D. Punishment: Fire the tech, hold a &quot;Mandatory Button Safety&quot; seminar for everyone else. -&gt;Z4 Q1 RCA Fail Fix]]
-[[E. You should not have conducted an RCA. You needed a Failure Modes and Effects Analysis instead. You wasted everyone&#39;s time.-&gt;Z4 Q1 RCA Fail FMEA]]</tw-passagedata><tw-passagedata pid="99" name="Z4 Q2 PDSA" tags="wards-bg" position="1600,3625" size="100,100"># ZONE 4: THE WARDS
+[[E. You should not have conducted an RCA. You needed a Failure Modes and Effects Analysis instead. You wasted everyone&#39;s time.-&gt;Z4 Q1 RCA Fail FMEA]]</tw-passagedata><tw-passagedata pid="69" name="Z4 Q2 PDSA" tags="wards-bg" position="1600,3625" size="100,100"># ZONE 4: THE WARDS
 
 **CORRECT.**
 You ordered the installation of the **Electronic Interlock**. The door is now physically impossible to leave open. Dr. McBride is very happy with you! 
@@ -2365,7 +1749,7 @@ You intervene. Rolling out an untested solution hospital-wide is dangerous. Acco
 
 [[A. Implement the emitters in the ICU only, since those patients are most critical. -&gt;Z4 Q2 PDSA Fail]]
 [[B. Start a PDSA Cycle: Test one emitter in one empty hallway for one hour. -&gt;Z4 Q3 Forest]]
-[[C. Assign a medical student to make a Randomized Controlled Trial (RCT) to publish in a peer-reviewed journal. -&gt;Z4 Q2 PDSA Fail]]</tw-passagedata><tw-passagedata pid="100" name="Z4 Q1 RCA Fail Fix" tags="wards-bg" position="1475,3625" size="100,100"># ZONE 4: THE WARDS
+[[C. Assign a medical student to make a Randomized Controlled Trial (RCT) to publish in a peer-reviewed journal. -&gt;Z4 Q2 PDSA Fail]]</tw-passagedata><tw-passagedata pid="70" name="Z4 Q1 RCA Fail Fix" tags="wards-bg" position="1475,3625" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2398,7 +1782,7 @@ To save the Wards, you must design the system to handle human imperfection.
         
     &lt;/div&gt;
 
-[[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="101" name="Z4 Q1 RCA Fail FMEA" tags="wards-bg" position="1350,3625" size="100,100"># ZONE 4: THE WARDS
+[[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="71" name="Z4 Q1 RCA Fail FMEA" tags="wards-bg" position="1350,3625" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2431,7 +1815,7 @@ Since the zombies are already inside, it&#39;s too late for FMEA. You need an RC
 (hide: ?graphPopup)
 
 
-[[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="102" name="Z4 Q2 PDSA Fail" tags="wards-bg" position="1475,3750" size="100,100"># ZONE 4: THE WARDS
+[[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="72" name="Z4 Q2 PDSA Fail" tags="wards-bg" position="1475,3750" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2450,7 +1834,7 @@ You do a &quot;Small Test of Change.&quot; Test it in one safe spot, for a short
 &lt;img src=&quot;https://i.imgur.com/jW6UBs5.png&quot; width=&quot;100%&quot;&gt;
 
 
-[[Try Again -&gt;Z4 Q2 PDSA]]</tw-passagedata><tw-passagedata pid="103" name="Z4 Q3 Forest" tags="wards-bg" position="1600,3750" size="100,100"># ZONE 4: THE WARDS
+[[Try Again -&gt;Z4 Q2 PDSA]]</tw-passagedata><tw-passagedata pid="73" name="Z4 Q3 Forest" tags="wards-bg" position="1600,3750" size="100,100"># ZONE 4: THE WARDS
 **CORRECT.**
 You run the PDSA cycle. The data looks promising, but Dr. McBride is skeptical. She pulls up 4 different studies from other hospitals about &quot;Ultrasonic Repellents.&quot;
 
@@ -2466,7 +1850,7 @@ What is your conclusion?
 
 [[A. The result is statistically significant -&gt;Z4 Q4 Validity]]
 [[B. The result is not significant -&gt;Z4 Q3 Forest Fail]]
-[[C. The studies are too heterogeneous to combine -&gt;Z4 Q3 Forest Fail]]</tw-passagedata><tw-passagedata pid="104" name="Z4 Q4 Validity" tags="wards-bg" position="1600,3875" size="100,100"># ZONE 4: THE WARDS
+[[C. The studies are too heterogeneous to combine -&gt;Z4 Q3 Forest Fail]]</tw-passagedata><tw-passagedata pid="74" name="Z4 Q4 Validity" tags="wards-bg" position="1600,3875" size="100,100"># ZONE 4: THE WARDS
 **CORRECT.**
 The Forest Plot confirms significance! We&#39;re ready to deploy.
 
@@ -2480,7 +1864,7 @@ However, because the study population does not match your current patient popula
 
 [[A. Internal Validity -&gt;Z4 Q4 Validity Fail]]
 [[B. External Validity  -&gt;Z4 Q5 Swiss]]
-[[C. Reliability -&gt;Z4 Q4 Validity Fail]]</tw-passagedata><tw-passagedata pid="105" name="Z4 Q3 Forest Fail" tags="wards-bg" position="1475,3875" size="100,100"># ZONE 4: THE WARDS
+[[C. Reliability -&gt;Z4 Q4 Validity Fail]]</tw-passagedata><tw-passagedata pid="75" name="Z4 Q3 Forest Fail" tags="wards-bg" position="1475,3875" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 **INCORRECT.**
@@ -2494,7 +1878,7 @@ Look at the **Diamond** (The Grand Total) relative to the **Line** (1.0).
 
 Since the diamond does **not** touch the line, the data proves the emitters work.
 
-[[Try Again -&gt;Z4 Q3 Forest]]</tw-passagedata><tw-passagedata pid="106" name="Z4 Q5 Swiss" tags="wards-bg" position="1600,4000" size="100,100"># ZONE 4: THE WARDS
+[[Try Again -&gt;Z4 Q3 Forest]]</tw-passagedata><tw-passagedata pid="76" name="Z4 Q5 Swiss" tags="wards-bg" position="1600,4000" size="100,100"># ZONE 4: THE WARDS
 **CORRECT.**
 You realized the emitters wouldn&#39;t work on &quot;Running&quot; zombies (External Validity failure), so you didn&#39;t install them. You saved the ward from a false sense of security.
 
@@ -2511,7 +1895,7 @@ Separately, none of these errors would have caused a breach. But because they al
 
 [[A. The Swiss Cheese Model of Accident Causation -&gt;Zone4 Hub]]
 [[B. The Donabedian Model of Quality -&gt;Z4 Q5 Swiss Fail]]
-[[C. The Hawthorne Effect -&gt;Z4 Q5 Swiss Fail]]</tw-passagedata><tw-passagedata pid="107" name="Z4 Q4 Validity Fail" tags="wards-bg" position="1475,4000" size="100,100"># ZONE 4: THE WARDS
+[[C. The Hawthorne Effect -&gt;Z4 Q5 Swiss Fail]]</tw-passagedata><tw-passagedata pid="77" name="Z4 Q4 Validity Fail" tags="wards-bg" position="1475,4000" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 **INCORRECT.**
@@ -2524,7 +1908,7 @@ You are confusing the &quot;quality of the study&quot; with the &quot;applicabil
 
 The study proved emitters work on Walking Zombies. It proved nothing about Runners. You cannot generalize the findings to your specific problem.
 
-[[Try Again -&gt;Z4 Q4 Validity]]</tw-passagedata><tw-passagedata pid="108" name="Zone4 Hub" tags="wards-bg" position="1600,4125" size="100,100"># ZONE 4: THE WARDS
+[[Try Again -&gt;Z4 Q4 Validity]]</tw-passagedata><tw-passagedata pid="78" name="Zone4 Hub" tags="wards-bg" position="1600,4125" size="100,100"># ZONE 4: THE WARDS
 **ZONE 4 CLEARED.**
 You have stabilized The Wards.
 By redesigning the levers (Forcing Functions), testing small (PDSA), interpreting the evidence (Meta-Analysis), and patching the layers of defense (Swiss Cheese), you have bought the hospital time.
@@ -2532,7 +1916,7 @@ By redesigning the levers (Forcing Functions), testing small (PDSA), interpretin
 You attempt to enter the last stairwell, but a Security Checkpoint blocks your way. 
 
 [[Ascend to Checkpoint Delta  -&gt;Checkpoint Delta]]
-[[Stop in the Supply Closet to heal up!-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="109" name="Z4 Q5 Swiss Fail" tags="wards-bg" position="1475,4125" size="100,100"># ZONE 4: THE WARDS
+[[Stop in the Supply Closet to heal up!-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="79" name="Z4 Q5 Swiss Fail" tags="wards-bg" position="1475,4125" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
 **INCORRECT.**
@@ -2564,7 +1948,7 @@ You attempt to enter the last stairwell, but a Security Checkpoint blocks your w
 
 You didn&#39;t have one failure; you had an unlucky alignment of three.
 
-[[Try Again -&gt;Z4 Q5 Swiss]]</tw-passagedata><tw-passagedata pid="110" name="Checkpoint Delta" tags="sec-bg" position="1800,4200" size="100,100">#CHEKCPOINT DELTA
+[[Try Again -&gt;Z4 Q5 Swiss]]</tw-passagedata><tw-passagedata pid="80" name="Checkpoint Delta" tags="sec-bg" position="1800,4200" size="100,100">#CHEKCPOINT DELTA
 
 **SECURITY PROTOCOL: INSERT DRIVES**
 
@@ -2586,7 +1970,7 @@ Which drives do you insert? (Select the correct combination)
 [[Insert Drives A and C only -&gt;Checkpoint Delta Pass]]
 [[Insert Drives A, C, and E only -&gt;Checkpoint Delta Fail]]
 [[Insert All Drives (A, B, C, D, E) -&gt;Checkpoint Delta Fail]]
- </tw-passagedata><tw-passagedata pid="111" name="Checkpoint Delta Pass" tags="stairwell" position="1800,4325" size="100,100"># CHECKPOINT DELTA
+ </tw-passagedata><tw-passagedata pid="81" name="Checkpoint Delta Pass" tags="sec-bg" position="1800,4325" size="100,100"># CHECKPOINT DELTA
 **ACCESS GRANTED.**
 
 The blast doors hiss open. The cool wind from the roof hits your face.
@@ -2594,7 +1978,7 @@ You have filtered out the noise and kept only the strongest evidence.
 
 You step out onto the Helipad. The helicopter is waiting... but the Pilot is shouting something about &quot;Significance.&quot;
 
-[[Confront the Final Boss  -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="112" name="Checkpoint Delta Fail" tags="sec-bg" position="1675,4325" size="100,100">#CHEKCPOINT DELTA
+[[Confront the Final Boss  -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="82" name="Checkpoint Delta Fail" tags="sec-bg" position="1675,4325" size="100,100">#CHEKCPOINT DELTA
 **ACCESS DENIED**
 (set: $hp to $hp - 10)
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
@@ -2627,7 +2011,7 @@ You must only use the Experimental/High-Level evidence (A &amp; C).
         
     &lt;/div&gt;
 
-[[Try Again -&gt;Checkpoint Delta]]</tw-passagedata><tw-passagedata pid="113" name="Z5 BOSS CI" tags="roof-bg" position="1800,4450" size="100,100"># THE ROOF
+[[Try Again -&gt;Checkpoint Delta]]</tw-passagedata><tw-passagedata pid="83" name="Z5 BOSS CI" tags="roof-bg" position="1800,4450" size="100,100"># THE ROOF
 
 **FINAL BOSS: THE CONFIDENCE INTERVALS**
 
@@ -2646,7 +2030,7 @@ The Pilot screams: *&quot;Which of these drugs actually WORKS (Statistically Sig
 [[C. Drug Z only -&gt;Z5 BOSS FAIL]]
 [[D. Drug X and Drug Y -&gt;Z5 BOSS FAIL]]
 [[E. Drug X and Drug Z -&gt;Z5 BOSS FAIL]]
-</tw-passagedata><tw-passagedata pid="114" name="VICTORY" tags="roof-bg" position="1800,4575" size="100,100"># VICTORY
+</tw-passagedata><tw-passagedata pid="84" name="VICTORY" tags="roof-bg" position="1800,4575" size="100,100"># VICTORY
 
 &quot;That&#39;s the one!&quot; the Pilot yells. &quot;Drug X is the cure!&quot;
 
@@ -2656,7 +2040,7 @@ You used every tool in your arsenal — Screening, Biostats, Study Design, and E
 
 **CONGRATULATIONS. YOU ARE A BOARD CERTIFIED SURVIVOR OF THE ZOMBIE APOCALYPSE**
 
-[[PLAY AGAIN -&gt;Startup]]</tw-passagedata><tw-passagedata pid="115" name="Z5 BOSS FAIL" tags="roof-bg" position="1675,4575" size="100,100"># THE ROOF
+[[PLAY AGAIN -&gt;Startup]]</tw-passagedata><tw-passagedata pid="85" name="Z5 BOSS FAIL" tags="roof-bg" position="1675,4575" size="100,100"># THE ROOF
 **MISSION FAILED.**
 
 The Pilot shakes his head. &quot;I can&#39;t risk it!&quot;
@@ -2666,7 +2050,7 @@ The Pilot shakes his head. &quot;I can&#39;t risk it!&quot;
 * **Drug Z:** The CI is **1.1 to 1.5**. It is significant, but the RR is **&gt; 1.0**. That means it **INCREASES** the risk of death! It kills people!
 
 
-[[Try Again -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="116" name="Mission Select" tags="title-screen" position="1500,100" size="100,100">(set: $health to 100)
+[[Try Again -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="86" name="Mission Select" tags="title-screen" position="1500,100" size="100,100">(set: $health to 100)
 
 # MISSION SELECT
 **&quot;Where are you needed, Doctor?&quot;**
