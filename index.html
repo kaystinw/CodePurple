@@ -1428,7 +1428,7 @@ Memorize the **&quot;SWIM&quot;** mnemonic for Phases:
 The Chief wanted to know if it *works* (Phase II).
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 [[Try Again -&gt; Z3 Q1 Phases]]</tw-passagedata><tw-passagedata pid="54" name="Z3 Q3 OR/RR" tags="pharm-bg" position="1600,2550" size="100,100"># ZONE 3: THE PHARMACY
 
@@ -1464,12 +1464,12 @@ Here is the math:
 With 20 vials, you can save 4 people.
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 [[Try Again -&gt;Z3 Q2 NNT]]</tw-passagedata><tw-passagedata pid="56" name="Z3 Q3 OR/RR Fail" tags="pharm-bg" position="1475,2675" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 
@@ -1530,7 +1530,7 @@ You decide to repeat this exact study with **400 zombies**. Assuming the drug re
 [[C. P-value stays the same || CI widens -&gt;Z3 Q4 Power Fail]]</tw-passagedata><tw-passagedata pid="58" name="Z3 Q4 Power Fail" tags="pharm-bg" position="1475,2800" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 
@@ -1581,7 +1581,7 @@ To follow the **Intention-to-Treat (ITT)** principle, which preserves the benefi
 [[C. Move them to the Placebo Group -&gt;Z3 Q5 ITT Fail]]</tw-passagedata><tw-passagedata pid="60" name="Z3 Q5 ITT Fail" tags="pharm-bg" position="1475,2925" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 **&quot;Once Randomized, Always Analyzed.&quot;**
@@ -1628,7 +1628,7 @@ The Pharmacist who wrote this note was excited. What does a Hazard Ratio of 0.50
 [[C. 50% of them are cured forever -&gt;Z3 EC3 HR Fail]]</tw-passagedata><tw-passagedata pid="63" name="Z3 EC3 HR Fail" tags="pharm-bg" position="1350,3225" size="100,100"># ZONE 3: THE PHARMACY
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 &quot;Don&#39;t confuse Time with Risk!&quot;
@@ -1724,7 +1724,7 @@ You intervene. Rolling out an untested solution hospital-wide is dangerous. Acco
 [[C. Assign a medical student to make a Randomized Controlled Trial (RCT) to publish in a peer-reviewed journal. -&gt;Z4 Q2 PDSA Fail]]</tw-passagedata><tw-passagedata pid="70" name="Z4 Q1 RCA Fail Fix" tags="wards-bg" position="1475,3625" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 
@@ -1757,7 +1757,7 @@ To save the Wards, you must design the system to handle human imperfection.
 [[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="71" name="Z4 Q1 RCA Fail FMEA" tags="wards-bg" position="1350,3625" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 
@@ -1790,7 +1790,7 @@ Since the zombies are already inside, it&#39;s too late for FMEA. You need an RC
 [[Try Again -&gt;Z4 Q1 RCA]]</tw-passagedata><tw-passagedata pid="72" name="Z4 Q2 PDSA Fail" tags="wards-bg" position="1475,3750" size="100,100"># ZONE 4: THE WARDS
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT**
 
@@ -1838,7 +1838,7 @@ However, because the study population does not match your current patient popula
 [[B. External Validity  -&gt;Z4 Q5 Swiss]]
 [[C. Reliability -&gt;Z4 Q4 Validity Fail]]</tw-passagedata><tw-passagedata pid="75" name="Z4 Q3 Forest Fail" tags="wards-bg" position="1475,3875" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 **INCORRECT.**
 
 Look at the **Diamond** (The Grand Total) relative to the **Line** (1.0).
@@ -1869,7 +1869,7 @@ Separately, none of these errors would have caused a breach. But because they al
 [[B. The Donabedian Model of Quality -&gt;Z4 Q5 Swiss Fail]]
 [[C. The Hawthorne Effect -&gt;Z4 Q5 Swiss Fail]]</tw-passagedata><tw-passagedata pid="77" name="Z4 Q4 Validity Fail" tags="wards-bg" position="1475,4000" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 **INCORRECT.**
 
 You are confusing the &quot;quality of the study&quot; with the &quot;applicability of the study.&quot;
@@ -1890,7 +1890,7 @@ You attempt to enter the last stairwell, but a Security Checkpoint blocks your w
 [[Ascend to Checkpoint Delta  -&gt;Checkpoint Delta]]
 [[Stop in the Supply Closet to heal up!-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="79" name="Z4 Q5 Swiss Fail" tags="wards-bg" position="1475,4125" size="100,100"># ZONE 4: THE WARDS
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 **INCORRECT.**
 
 (link-repeat: &quot;SWISS CHEESE MODEL&quot;)[(show: ?imgPopup)]
@@ -1953,7 +1953,7 @@ You step out onto the Helipad. The helicopter is waiting... but the Pilot is sho
 [[Confront the Final Boss  -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="82" name="Checkpoint Delta Fail" tags="sec-bg" position="1675,4325" size="100,100">#CHEKCPOINT DELTA
 **ACCESS DENIED**
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 The system spits the drives back out. You included low-quality data or missed high-quality data.
 
@@ -2022,7 +2022,7 @@ The Pilot shakes his head. &quot;I can&#39;t risk it!&quot;
 * **Drug Z:** The CI is **1.1 to 1.5**. It is significant, but the RR is **&gt; 1.0**. That means it **INCREASES** the risk of death! It kills people!
 
 
-[[Try Again -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="86" name="Mission Select" tags="title-screen" position="1500,100" size="100,100">(set: $health to 100)
+[[Try Again -&gt;Z5 BOSS CI]]</tw-passagedata><tw-passagedata pid="86" name="Mission Select" tags="title-screen" position="1500,100" size="100,100">(set: $hp to 100)
 
 # MISSION SELECT
 **&quot;Where are you needed, Doctor?&quot;**
