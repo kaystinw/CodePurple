@@ -210,6 +210,8 @@ tw-story[tags~="stairwell"] tw-passage {
     text-align: center;
     box-shadow: 0 0 50px #ff0000;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="purple"></tw-tag><tw-tag name="title-screen" color="blue"></tw-tag><tw-tag name="level-1-bg" color="green"></tw-tag><tw-tag name="dead-bg" color="red"></tw-tag><tw-tag name="psych-pod-bg" color="yellow"></tw-tag><tw-tag name="sec-bg" color="orange"></tw-tag><tw-tag name="lab-bg" color="green"></tw-tag><tw-tag name="pharm-bg" color="green"></tw-tag><tw-tag name="wards-bg" color="green"></tw-tag><tw-tag name="roof-bg" color="green"></tw-tag><tw-tag name="supply-bg" color="purple"></tw-tag><tw-tag name="victory-bg" color="blue"></tw-tag><tw-tag name="levl" color="green"></tw-tag><tw-tag name="stairwell" color="orange"></tw-tag><tw-tag name="pharn" color="green"></tw-tag><tw-passagedata pid="1" name="Startup" tags="title-screen" position="1300,100" size="100,100">(set: $hp to 100)
+(set: $hasN95 to false)
+(set: $hasAmulet to false)
 
 
 # WELCOME TO THE HOSPITAL 
@@ -491,7 +493,7 @@ The system asks for the **Pearson Correlation Coefficient (r)**. Based on the gr
     (else:)[
         (goto: &quot;Screening_Incorrect&quot;)
     ]
-]</tw-passagedata><tw-passagedata pid="16" name="Screening_Correct" tags="psych-pod-bg" position="1275,1150" size="100,100">(set: $hasN95 to true)
+]</tw-passagedata><tw-passagedata pid="16" name="Screening Correct" tags="psych-pod-bg" position="1275,1150" size="100,100">(set: $hasN95 to true)
 
 # Correct!
 
@@ -518,7 +520,7 @@ If you want to review:
 
 
 
-(set: $item_amulet to true)
+(set: $hasAmulet to true)  
 You clasp the **Amulet of Cochrane** around your neck.
 * **The Lesson:** PPV depends heavily on **Prevalence**.
 * In a rare disease, most positives are False Positives.
@@ -527,7 +529,7 @@ You clasp the **Amulet of Cochrane** around your neck.
 You feel wiser. You are ready to move on.
 
 [[Move to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]
-[[I need a break. Crash in the Supply Closet?-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="17" name="Screening_Incorrect" tags="psych-pod-bg" position="1175,1150" size="100,100"># Incorrect.
+[[I need a break. Crash in the Supply Closet?-&gt;Supply Closet]]</tw-passagedata><tw-passagedata pid="17" name="Screening Incorrect" tags="psych-pod-bg" position="1175,1150" size="100,100"># Incorrect.
 
 &quot;Not quite,&quot; the Chief says. &quot;Review the Wilson and Jungner criteria tonight.&quot;
 
@@ -550,6 +552,7 @@ You feel wiser. You are ready to move on.
 (hide: ?graphPopup)
 
 He puts the Amulet away. You&#39;ll have to face the wards without one.
+
 
 [[Move to Checkpoint Alpha-&gt;Checkpoint Alpha Incidence]]</tw-passagedata><tw-passagedata pid="18" name="Zone1 EC1 Screening" tags="psych-pod-bg" position="1300,950" size="100,100">**YOU APPROACH THE PSYCH POD...**
 
@@ -735,9 +738,10 @@ Wait, I&#39;m still confused. Picture?
     &lt;/div&gt;
 ]
 
+
 # Are we done yet? 
 **YOU FOUND AN N95 MASK**
-(set: $item_mask to true)
+(set: $hasN95 to true) 
 *(Passive Effect: This item will reveal HINT on future levels)*
 
 [[Yawn... I didn&#39;t read all that...Go to next level. -&gt;Checkpoint Bravo]]
