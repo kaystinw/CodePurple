@@ -340,7 +340,7 @@ How to choose a stastical test:
     **Cause of Death:** Irony.
     You calculated the p-value perfectly, but you forgot to look up. A falling air conditioner crushed you.
 ]
-(else: $deatRoll is 4)[
+(else:)[
     **Cause of Death:** Admin Bloat.
     You stopped to fill out a mandatory wellness survey. The zombies appreciated the snack.
 ]
@@ -372,8 +372,8 @@ Security-Man Tom radios in: &quot;We have a sniper team! They can shoot the ones
 **The Question:**
 If the snipers successfully stop 50% of the zombies from climbing the fence, which value changes immediately?
 
-[[A. Prevalence decreases -&gt;Checkpoint Alpha Fail]]
-[[B. Incidence decreases -&gt; Checkpoint Alpha Clear]]
+[[A. Prevalence in the facility decreases -&gt;Checkpoint Alpha Fail]]
+[[B. Incidence inn the facility decreases -&gt; Checkpoint Alpha Clear]]
 [[C. Both stay the same -&gt;Checkpoint Alpha Fail]]
 
 </tw-passagedata><tw-passagedata pid="11" name="Checkpoint Bravo" tags="sec-bg" position="1925,2000" size="100,100"># SECURITY CHECKPOINT BRAVO
@@ -488,10 +488,10 @@ The system asks for the **Pearson Correlation Coefficient (r)**. Based on the gr
 &lt;br&gt;&lt;br&gt;
 (link: &quot;SUBMIT ANSWERS&quot;)[
     (if: $choiceA is true and $choiceB is false and $choiceC is true and $choiceD is true and $choiceE is true)[
-        (goto: &quot;Screening_Correct&quot;)
+        (goto: &quot;Screening Correct&quot;)
     ]
     (else:)[
-        (goto: &quot;Screening_Incorrect&quot;)
+        (goto: &quot;Screening Incorrect&quot;)
     ]
 ]</tw-passagedata><tw-passagedata pid="16" name="Screening Correct" tags="psych-pod-bg" position="1275,1150" size="100,100">(set: $hasN95 to true)
 
@@ -944,23 +944,13 @@ Even with a great test, if the prevalence is low (1%), the Positive Predictive V
 (if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 **INCORRECT.**
-Predictive Values (both PPV and NPV) are dependent on Prevalence. They are &quot;Prevalence Slaves.&quot;
+Predictive Values (both PPV and NPV) are dependent on Prevalence. 
 
-* **Likelihood Ratios (LR+ and LR-)** are the answer.
-* They are calculated purely from Sensitivity and Specificity.
-* An LR &gt; 10 is a great test, whether you are in a safe bunker or a zombie mosh pit.
-
-
-Think about the scanner in your hand.
+**Likelihood ratio** is dependent on Sensitivity and Specificity.
+* An LR &gt; 10 is a great test, whether you are in a safe zone or the hot zone. It is a measure of the test, independent of location.
 
 * **PPV (Positive Predictive Value)** tells you: *&quot;How worried should I be **right now**?&quot;* This changes based on your location (Safe Zone vs. Hot Zone).
 * **Likelihood Ratio** tells you: *&quot;How good is this **machine**?&quot;*
-
-Does the scanner physically change or get &quot;worse&quot; just because you walked into a different room? **No.** Its ability to detect the virus is built into the hardware.
-
-**The Lesson:**
-**Likelihood Ratios** describe the fixed performance of the hardware. They are the only number that stays constant no matter where you go.
-
 
 
 ***Mathematically,*** look at the formula. 
@@ -1081,6 +1071,8 @@ By stopping the flow of new zombies, you eventually gain control of the total cr
 The doors to the **HOSPITAL LABORATORY ** hiss open.
 
 [[Enter the Lab.-&gt;Z2 Intro]]</tw-passagedata><tw-passagedata pid="37" name="Z2 Intro" tags="lab-bg" position="1700,1200" size="100,100"># ZONE 2: THE LAB
+(set:$hp = 100)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 You push through the heavy fire doors at the bottom of the stairwell. The air here is colder, smelling of ozone and disinfectant.
 
@@ -1106,6 +1098,7 @@ You started with the **Disease** and looked back for the **Exposure**. What stud
 [[B. Case-Control -&gt;Z2 Q2 Bias]]
 [[C. Cross-Sectional -&gt;Z2 Q1 Fail]]
 [[D. Randomized Controlled Trial -&gt;Z2 Q1 Fail]]</tw-passagedata><tw-passagedata pid="39" name="Z2 Q1 Fail" tags="lab-bg" position="1475,1425" size="100,100">(set: $hp to $hp - 10)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 # ZONE 2: THE LAB
 **Wrong Study**
 
@@ -1343,7 +1336,7 @@ Here&#39;s a picture:
 ]
 
 (set: $hp to $hp - 10)
-(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)
+(if: $hp &lt;= 0)[(goto: &quot;Dead&quot;)]
 
 
 [[Try Again -&gt;Z2 Q5 Distro]]</tw-passagedata><tw-passagedata pid="48" name="Z2 Hub" tags="lab-bg" position="1700,1900" size="100,100"># ZONE 2 CLEARED.
